@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# This script installs nginx on ubuntu server
+# Configures nginx on a fresh Ubuntu machine to 301-redirect /redirect_me
 
+sudo apt-get update -y
 sudo apt-get install -y nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-line="\\\trewrite ^/redirect_me http://lnjoroge.tech permanent;"
-sudo sed -i "26i $line" /etc/nginx/sites-available/default
+echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
+
+# Insert a 301 redirect right after the "listen 80" line (always inside server {})
+sudo sed -i '/listen 80 default_server;/a \\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
 sudo service nginx restart
