@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# script installs nginx on ubuntu server
+# Installs and configures nginx on an Ubuntu server to serve "Holberton School"
 
-sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y
 sudo apt-get install -y nginx
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
-sudo ufw allow 'Nginx HTTP'
-sudo service nginx restart
+echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
+sudo service nginx start
